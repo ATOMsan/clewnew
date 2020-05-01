@@ -1,5 +1,5 @@
-$(function() {
-  $(".header__hamburger").on("click", function() {
+$(function () {
+  $(".header__hamburger").on("click", function () {
     $(".hamburger").toggleClass("is-active");
     $(".header__menu-mobile").toggleClass("mobile-menu-active");
     $(".bgmobile").toggleClass("bgmobile-active");
@@ -11,15 +11,15 @@ $(function() {
     dots: true,
     arrows: false,
     speed: 1000,
-    autoplaySpeed: 5000
+    autoplaySpeed: 5000,
   });
 
-  $(".sl-prev").on("click", function(e) {
+  $(".sl-prev").on("click", function (e) {
     e.preventDefault();
     bannerSlider.slick("slickPrev");
   });
 
-  $(".sl-next").on("click", function(e) {
+  $(".sl-next").on("click", function (e) {
     e.preventDefault();
     bannerSlider.slick("slickNext");
   });
@@ -32,7 +32,7 @@ $(function() {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplaySpeed: 5000,
-    speed: 1000
+    speed: 1000,
   });
 
   var colabSlider = $(".colab__slider").slick({
@@ -43,42 +43,34 @@ $(function() {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplaySpeed: 5000,
-    speed: 1000
+    speed: 1000,
   });
 
   //cart count
 
-  var calculateTotals = function() {
+  var calculateTotals = function () {
     var total = 0;
-    $(".cart__item-contain").each(function() {
-      var price = parseInt(
-        $(this)
-          .find("[data-price]")
-          .data("price")
-      );
-      var q = parseInt(
-        $(this)
-          .find("[data-q]")
-          .attr("data-q")
-      );
+    $(".cart__item-contain").each(function () {
+      var price = parseInt($(this).find("[data-price]").data("price"));
+      var q = parseInt($(this).find("[data-q]").attr("data-q"));
       total += price * q;
     });
     $(".cart__total .mobile-total span").text(total);
   };
 
-  var calculateCartItems = function() {
+  var calculateCartItems = function () {
     var counter = 0;
-    $(".cart__item").each(function() {
+    $(".cart__item").each(function () {
       counter++;
     });
     return counter;
   };
 
-  $(document).ready(function() {
+  $(document).ready(function () {
     var qInput = $(".quantity input");
     qInput.after("<div class='q-plus quant'>+</div>");
     qInput.before("<div class='q-minus quant'>-</div>");
-    $(document).on("click", ".quant", function() {
+    $(document).on("click", ".quant", function () {
       qInput = $(this).siblings("input");
       var q = parseInt(qInput.val());
       if ($(this).hasClass("q-plus")) {
@@ -101,9 +93,7 @@ $(function() {
 
       calculateTotals();
 
-      var productID = $(this)
-        .parents(".cart__item")
-        .attr("data-productid");
+      var productID = $(this).parents(".cart__item").attr("data-productid");
       window.cartObj[productID].quantity = q;
       window.cartObj[productID].line_total = newPrice;
 
@@ -113,15 +103,15 @@ $(function() {
         data: {
           action: "change_quantity",
           q: q,
-          cart_item_id: parents.data("key")
+          cart_item_id: parents.data("key"),
         },
-        success: function(data) {
+        success: function (data) {
           console.log(data);
-        }
+        },
       });
     });
 
-    $(document).on("click", ".cart__delete a", function(e) {
+    $(document).on("click", ".cart__delete a", function (e) {
       e.preventDefault();
       var parent = $(this).parents(".cart__item");
       parent.remove();
@@ -141,21 +131,19 @@ $(function() {
         action: "/",
         data: {
           action: "removeFromCart",
-          id: cartProductID
+          id: cartProductID,
         },
-        success: function(id) {
+        success: function (id) {
           console.log(id);
-        }
+        },
       });
     });
 
-    $(document).on("click", ".desktop-clear-cart", function() {
+    $(document).on("click", ".desktop-clear-cart", function () {
       var cardIDsArr = [];
 
-      $(".cart__item").each(function() {
-        var cartID = $(this)
-          .find(".cart__item-contain")
-          .data("key");
+      $(".cart__item").each(function () {
+        var cartID = $(this).find(".cart__item-contain").data("key");
         cardIDsArr.push(cartID);
       });
       window.cartCount = 0;
@@ -165,11 +153,11 @@ $(function() {
         url: "/",
         data: {
           action: "removeAllCart",
-          cardIDsArr: cardIDsArr
+          cardIDsArr: cardIDsArr,
         },
-        success: function(data) {
+        success: function (data) {
           console.log(data);
-        }
+        },
       });
 
       $(".woocommerce").html(
@@ -184,7 +172,7 @@ $(function() {
     }
     $(".cart-wrap").removeClass("loading");
 
-    $(document).on("click", ".cart__checkout a", function(e) {
+    $(document).on("click", ".cart__checkout a", function (e) {
       e.preventDefault();
       window.location.hash = "step1";
       $(".c-cart").hide();
@@ -200,7 +188,7 @@ $(function() {
         .hide();
     }
 
-    $(document).on("change", "[name=delivery]", function(e) {
+    $(document).on("change", "[name=delivery]", function (e) {
       e.preventDefault();
       var value = $(this).val();
       $("." + value)
@@ -217,21 +205,21 @@ $(function() {
         modelName: "Address",
         calledMethod: "getAreas",
         methodProperties: {},
-        apiKey: "acbd806a5d517b52e9b842047e70e3fc"
+        apiKey: "acbd806a5d517b52e9b842047e70e3fc",
       }),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       xhrFields: {
         // Свойство 'xhrFields' устанавливает дополнительные поля в XMLHttpRequest. // Это можно использовать для установки свойства 'withCredentials'. // Установите значение «true», если вы хотите передать файлы cookie на сервер. // Если это включено, ваш сервер должен ответить заголовком // 'Access-Control-Allow-Credentials: true'.
-        withCredentials: false
+        withCredentials: false,
       },
-      success: function(texts) {
+      success: function (texts) {
         // console.log(texts);
-      }
+      },
     };
 
-    $.ajax(regionSettings).done(function(responseRegion) {
+    $.ajax(regionSettings).done(function (responseRegion) {
       for (var region of responseRegion.data) {
         $("#region-np").append(
           "<option value=" +
@@ -244,7 +232,7 @@ $(function() {
         );
       }
       $(".region").select2();
-      $(".region").on("select2:select", function(e) {
+      $(".region").on("select2:select", function (e) {
         var data = e.params.data;
         window.Cookies.set("region", data.text);
 
@@ -257,25 +245,21 @@ $(function() {
             calledMethod: "getCities",
             Area: data.element.dataset.ref,
             methodProperties: {},
-            apiKey: "acbd806a5d517b52e9b842047e70e3fc"
+            apiKey: "acbd806a5d517b52e9b842047e70e3fc",
           }),
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
           xhrFields: {
             // Свойство 'xhrFields' устанавливает дополнительные поля в XMLHttpRequest. // Это можно использовать для установки свойства 'withCredentials'. // Установите значение «true», если вы хотите передать файлы cookie на сервер. // Если это включено, ваш сервер должен ответить заголовком // 'Access-Control-Allow-Credentials: true'.
-            withCredentials: false
+            withCredentials: false,
           },
-          success: function(texts) {
+          success: function (texts) {
             // console.log(texts);
-          }
+          },
         };
-        $.ajax(citySettings).done(function(responseCity) {
-          if (
-            $(".city")
-              .next()
-              .hasClass("select2")
-          ) {
+        $.ajax(citySettings).done(function (responseCity) {
+          if ($(".city").next().hasClass("select2")) {
             $(".city").select2("destroy");
             $("#cities-np").html("");
           }
@@ -293,7 +277,7 @@ $(function() {
             }
           }
           $(".city").select2();
-          $(".city").on("select2:select", function(e) {
+          $(".city").on("select2:select", function (e) {
             var data = e.params.data;
             window.Cookies.set("city", data.text);
             var wareHouseSettings = {
@@ -304,27 +288,23 @@ $(function() {
                 modelName: "Address",
                 calledMethod: "getWarehouses",
                 methodProperties: {
-                  CityRef: data.element.dataset.ref
+                  CityRef: data.element.dataset.ref,
                 },
-                apiKey: "acbd806a5d517b52e9b842047e70e3fc"
+                apiKey: "acbd806a5d517b52e9b842047e70e3fc",
               }),
               headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
               },
               xhrFields: {
                 // Свойство 'xhrFields' устанавливает дополнительные поля в XMLHttpRequest. // Это можно использовать для установки свойства 'withCredentials'. // Установите значение «true», если вы хотите передать файлы cookie на сервер. // Если это включено, ваш сервер должен ответить заголовком // 'Access-Control-Allow-Credentials: true'.
-                withCredentials: false
+                withCredentials: false,
               },
-              success: function(texts) {
+              success: function (texts) {
                 // console.log(texts);
-              }
+              },
             };
-            $.ajax(wareHouseSettings).done(function(responseWareHouse) {
-              if (
-                $(".stage")
-                  .next()
-                  .hasClass("select2")
-              ) {
+            $.ajax(wareHouseSettings).done(function (responseWareHouse) {
+              if ($(".stage").next().hasClass("select2")) {
                 $(".stage").select2("destroy");
                 $("select.stage").html("");
               }
@@ -342,7 +322,7 @@ $(function() {
                 // }
               }
               $(".stage").select2();
-              $(".stage").on("select2:select", function(e) {
+              $(".stage").on("select2:select", function (e) {
                 window.Cookies.set("place", e.params.data.text);
               });
             });
@@ -358,27 +338,25 @@ $(function() {
 			});
 		});*/
 
-    $(".select2").on("click", function() {
-      var regInfo = $("#region-np")
-        .find(":selected")
-        .attr("title");
+    $(".select2").on("click", function () {
+      var regInfo = $("#region-np").find(":selected").attr("title");
       console.log(regInfo);
     });
 
     var timeout;
-    $(document).on("keypress", ".cookie-save", function() {
+    $(document).on("keypress", ".cookie-save", function () {
       var $this = $(this);
       clearTimeout(timeout);
-      timeout = setTimeout(function() {
+      timeout = setTimeout(function () {
         $this.trigger("change");
       }, 200);
     });
-    $(document).on("change", ".cookie-save", function() {
+    $(document).on("change", ".cookie-save", function () {
       var value;
       var name = $(this).attr("name");
       if ($(this).attr("type") == "checkbox") {
         var values = [];
-        $("[name='" + name + "']").each(function() {
+        $("[name='" + name + "']").each(function () {
           if (this.checked == true) {
             values.push($(this).val());
           }
@@ -390,14 +368,14 @@ $(function() {
       window.Cookies.set(name, value);
     });
 
-    $(document).on("submit", ".sert__form", function(e) {
+    $(document).on("submit", ".sert__form", function (e) {
       e.preventDefault();
       var data = {
-        action: "add-order"
+        action: "add-order",
       };
       $(
         ".woocommerce input[type=text],.woocommerce input[type=email],.woocommerce input[type=tel],.woocommerce input[type=checkbox]:checked,.woocommerce input[type=radio]:checked,.woocommerce textarea,.woocommerce select"
-      ).each(function() {
+      ).each(function () {
         if ($(this).val() != "" && $(this).val() !== null) {
           if (
             data[$(this).attr("name")] &&
@@ -412,7 +390,7 @@ $(function() {
       });
 
       $("." + data.delivery + " input, ." + data.delivery + " select").each(
-        function() {
+        function () {
           var $item = $(this),
             name = $item.attr("name"),
             value = $item.val() || window.Cookies.get(name);
@@ -433,7 +411,7 @@ $(function() {
         method: "POST",
         url: "/",
         data: data,
-        success: function(res) {
+        success: function (res) {
           if (data.groupPay === "paypal") {
             formPost(
               "https://www.sandbox.paypal.com/cgi-bin/webscr",
@@ -446,7 +424,7 @@ $(function() {
             $(document.body).append(liqForm);
             liqForm.submit();
           }
-        }
+        },
       });
     });
 
@@ -465,7 +443,7 @@ $(function() {
           order_id,
         cmd: "_cart",
         upload: 1,
-        charset: "utf-8"
+        charset: "utf-8",
       };
       var i = 1;
       for (var variable in window.cartObj) {
@@ -483,9 +461,9 @@ $(function() {
       form.attr("method", "post");
       form.attr("action", path);
 
-      $.each(parameters, function(key, value) {
+      $.each(parameters, function (key, value) {
         if (typeof value == "object" || typeof value == "array") {
-          $.each(value, function(subvalue) {
+          $.each(value, function (subvalue) {
             var field = $("<input />");
             field.attr("type", "hidden");
             field.attr("name", key + "[]");
@@ -503,5 +481,9 @@ $(function() {
       $(document.body).append(form);
       form.submit();
     }
+  });
+
+  $(".desktop-menu-link").hover(function () {
+    $(this).find(".desktop-menu-toggle").toggleClass("dmt-active");
   });
 });

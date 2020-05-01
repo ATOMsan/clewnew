@@ -1,0 +1,126 @@
+@import "vars";
+@import "fonts";
+
+.woocommerce form .form-row label {
+  line-height: 1;
+}
+.woocommerce form .form-row input.input-text,
+.woocommerce form .form-row textarea {
+  height: 45px;
+  border-radius: 7px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 10px;
+  transition: all 0.3s ease;
+}
+
+.woocommerce form .form-row input.input-text:focus,
+.woocommerce form .form-row textarea:focus {
+  border: 1px solid #efb39b;
+}
+
+.checkout__title {
+  font-size: 36px;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.woocommerce-additional-fields h3 {
+  font-size: 36px;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.woocommerce form .form-row textarea {
+  min-height: 120px;
+  padding: 10px;
+}
+
+.woocommerce .col2-set,
+.woocommerce-page .col2-set {
+  margin-bottom: 40px;
+}
+
+#order_review_heading {
+  font-size: 30px;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.woocommerce table.shop_table thead th {
+  font-weight: 600;
+}
+
+.woocommerce #respond input#submit.alt,
+.woocommerce a.button.alt,
+.woocommerce button.button.alt,
+.woocommerce input.button.alt {
+  width: 269px;
+  height: 64px;
+  background: #8682b7;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.03em;
+  color: #fff;
+  transition: all 0.3s ease;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+}
+
+.woocommerce #respond input#submit.alt:hover,
+.woocommerce a.button.alt:hover,
+.woocommerce button.button.alt:hover,
+.woocommerce input.button.alt:hover {
+  background-color: #efb39b;
+}
+
+#add_payment_method #payment,
+.woocommerce-cart #payment,
+.woocommerce-checkout #payment {
+  background-color: $accent;
+  margin-bottom: 40px;
+}
+
+.woocommerce form .form-row {
+  margin-bottom: 15px;
+}
+
+#add_payment_method #payment ul.payment_methods,
+.woocommerce-cart #payment ul.payment_methods,
+.woocommerce-checkout #payment ul.payment_methods {
+  border-bottom: 1px solid #8682b7;
+}
+
+#add_payment_method #payment div.payment_box,
+.woocommerce-cart #payment div.payment_box,
+.woocommerce-checkout #payment div.payment_box {
+  background-color: #8682b7;
+  color: #ffffff;
+}
+
+.payment_method_liqpay-webplus {
+  img {
+    display: none;
+  }
+}
+
+#add_payment_method #payment div.payment_box::before,
+.woocommerce-cart #payment div.payment_box::before,
+.woocommerce-checkout #payment div.payment_box::before {
+  border: 1em solid #8682b7;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+
+#billing_company_field {
+  display: none;
+}
